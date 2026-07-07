@@ -7,9 +7,9 @@
 它们本质上是同一个东西的不同实现：**一个能操作终端、读写文件、执行命令的 AI Agent**。
 
 - **Claude Code**：Anthropic 出品，运行在终端里，用 Claude 模型
-- **OpenAI Codex**：OpenAI 出品，IDE 插件 + CLI，用 GPT-4
+- **OpenAI Codex CLI**：OpenAI 出品，终端 Agent（2025），用 GPT-4。注意：旧的 Codex 模型（2021）已停用，现在的产品是 Codex CLI
 - **Gemini CLI**：Google 出品，终端 Agent，用 Gemini
-- **ZCode**：智谱出品，桌面 IDE，用 GLM-5.2
+- **ZCode**：智谱出品，终端 Agent + 桌面 IDE 集成，用 GLM-5.2
 
 它们共同的能力：
 1. 递归探索代码库（rg / grep / tree）

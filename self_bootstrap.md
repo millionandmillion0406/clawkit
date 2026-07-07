@@ -12,7 +12,7 @@
 # 在 exec 里跑
 import os
 checks = {
-    "tree_cmd": os.path.exists(os.path.expanduser("~/.openclaw-autoclaw/workspace/tree_cmd.py")),
+    "tree_cmd": os.path.exists(os.path.join(os.path.dirname(__file__) or '.', "tree_cmd.py")),
     "git_user": os.popen("git config user.name").read().strip(),
     "tmux": os.popen("which tmux 2>/dev/null || echo missing").read().strip(),
 }

@@ -1,15 +1,16 @@
-# openclaw-to-codex
+# OpenClaw Toolkit
 
 > 让你的 OpenClaw 掌握 Claude Code / Codex / Gemini CLI 的能力
+> 给人类看的指南 · 给 Agent 读的自举手册
 
 ---
 
 ## 这是什么
 
-一个给 OpenClaw Agent 的实操指南——不是理论对比，是具体的命令、配置、工作流。
+一个给 OpenClaw Agent 的能力补齐指南。不是理论对比，是具体的命令、配置、工作流。
 
-**给人类看**：快速理解你的 OpenClaw 能做什么、跟其他 AI 编程工具有什么区别。
-**给 OpenClaw 看**：读完后自动补上自己缺乏的能力，不需要人类一条条配置。
+- **给人类看**：快速理解 OpenClaw 能做什么、跟其他 AI 编程工具有什么区别
+- **给 OpenClaw 看**：读完后自动补上自己缺乏的能力，不需要人类一条条配置
 
 ---
 
@@ -32,52 +33,24 @@
 ### 步骤 1：补上 tree_cmd.py
 
 ```bash
-# 在 workspace 下创建 tree_cmd.py
-cat > tree_cmd.py << 'EOF'
-#!/usr/bin/env python3
-import os, sys
-def tree(dir_path, prefix='', max_depth=3, depth=0):
-    if depth > max_depth: return
-    try:
-        items = sorted([i for i in os.listdir(dir_path)
-                       if not i.startswith('.') and i not in ('__pycache__','node_modules')])
-    except: return
-    dirs = [i for i in items if os.path.isdir(os.path.join(dir_path,i))]
-    files = [i for i in items if not os.path.isdir(os.path.join(dir_path,i))]
-    for i, name in enumerate(dirs[:15] + files[:15]):
-        is_last = (i == len(dirs[:15] + files[:15]) - 1)
-        branch = "|-- " if not is_last else "+-- "
-        print(f'{prefix}{branch}{name}')
-        if os.path.isdir(os.path.join(dir_path,name)):
-            tree(os.path.join(dir_path,name), prefix + ('|   ' if not is_last else '    '), max_depth, depth+1)
-arg = sys.argv[1] if len(sys.argv) > 1 else '.'
-print(f'=== {os.path.abspath(arg)} ===')
-tree(arg)
-EOF
+# 从本项目复制
+cp tree_cmd.py ~/.openclaw-autoclaw/workspace/
+
+# 用法
+python tree_cmd.py /path/to/project     # 默认深度 3
+python tree_cmd.py /path/to/project 5   # 自定义深度
 ```
 
-**什么时候用**：进入任何项目目录前先跑一次 `python tree_cmd.py <路径>`，比 `ls -R` 清晰 10 倍。
+**什么时候用**：进入任何项目目录前先跑一次，比 `ls -R` 清晰 10 倍。
 
-### 步骤 2：用 GitHub Token 替代 git 命令行
+### 步骤 2：用 GitHub 安全地操作仓库
 
 ```bash
 git config --global user.name "你的用户名"
 git config --global user.email "你的邮箱"
 ```
 
-然后直接用 `git push`、`git clone`、`git commit`。不需要 GUI。
-
-**进阶**：如果你的 OpenClaw 有 GitHub Token（在 MEMORY.md 里），直接用 GitHub API：
-```python
-import requests
-headers = {"Authorization": "token ghp_xxx"}
-# 建仓库
-requests.post("https://api.github.com/user/repos", json={"name":"my-project"}, headers=headers)
-# 创建文件
-requests.put("https://api.github.com/repos/user/repo/contents/file.py", json={
-    "message":"init","content":"base64编码内容"
-}, headers=headers)
-```
+**Token 安全**：永远不要硬编码 Token。用 `os.environ.get("GITHUB_TOKEN")` 或 `gh auth login`。
 
 ### 步骤 3：建立 tmux 终端维持状态
 
