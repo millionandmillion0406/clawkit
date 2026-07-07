@@ -1,15 +1,12 @@
 # ClawKit
 
-> 让 OpenClaw 超越 Codex —— 补齐能力，释放独有优势
+> 让你的 OpenClaw 超越 Codex —— 掌握 Claude Code / Codex / Gemini CLI 同等甚至更强的编程能力
 
----
+不是理论对比，是具体的命令、配置、工作流。给人类看，也给 AI Agent 看——读完能自动补上自己缺乏的能力。
 
-## 这是什么
+包含：项目结构可视化工具、Agent 自举指南、多语言语法校验命令、工程纪律铁规、多 Agent 互审流程、一键配置脚本。
 
-一个给 OpenClaw Agent 的能力补齐指南。不是理论对比，是具体的命令、配置、工作流。
-
-- **给人类看**：快速理解 OpenClaw 能做什么、跟其他 AI 编程工具有什么区别
-- **给 OpenClaw 看**：读完后自动补上自己缺乏的能力，不需要人类一条条配置
+两个不同模型的 AI 互相审查、十余轮修改才上线。
 
 ---
 
@@ -79,7 +76,7 @@ tmux attach -t workspace
 4. **一次一处**：一次只改一个地方，验完再改下一处
 5. **留记录**：每次改动写进工作台文件
 
-这六条是远程改代码的基本纪律。详见 `lessons.md`。
+这些是远程改代码的基本纪律。详见 `lessons.md`。
 
 ---
 
@@ -90,7 +87,7 @@ tmux attach -t workspace
 - [ ] 我能看项目结构吗？（tree_cmd.py）
 - [ ] 我能推代码到 GitHub 吗？（git config + token）
 - [ ] 我有持续终端会话吗？（tmux）
-- [ ] 我遵守五条铁规吗？（读 MEMORY.md）
+- [ ] 我遵守工程纪律吗？（读 lessons.md）
 - [ ] 我能做多模型调度吗？（DeepSeek 摘要 + GLM 对话 + GLM-5V 看图）
 - [ ] 我有 24/7 自主能力吗？（crontab / systemd）
 
@@ -123,10 +120,14 @@ Codex、Claude Code、Gemini CLI 解决的是"写代码"这一个环节。你的
 ```
 clawkit/
 ├── README.md          本文件
-├── tree_cmd.py        项目结构可视化
-├── self_bootstrap.md  OpenClaw 自举指南（Agent 阅读版）
+├── tree_cmd.py        项目结构可视化（支持 --depth --pattern --all）
+├── self_bootstrap.md  Agent 自举指南
 ├── capabilities.md    能力对比详解
-└── lessons.md         五条铁规 + ZCode 审查实录
+├── lessons.md         工程纪律（六条铁规 + 反例）
+├── peer_review.md     多 Agent 互审流程
+├── bootstrap.sh       一键配置脚本
+├── LICENSE            MIT
+└── .gitignore
 ```
 
 ---
