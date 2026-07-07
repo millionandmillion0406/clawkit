@@ -1,7 +1,6 @@
-# OpenClaw Toolkit
+# ClawKit
 
-> 让你的 OpenClaw 掌握 Claude Code / Codex / Gemini CLI 的能力
-> 给人类看的指南 · 给 Agent 读的自举手册
+> 让 OpenClaw 超越 Codex —— 补齐能力，释放独有优势
 
 ---
 
