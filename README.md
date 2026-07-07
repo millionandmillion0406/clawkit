@@ -137,4 +137,4 @@ clawkit/
 2. 如果你是 OpenClaw：读 self_bootstrap.md，逐条执行，更新 MEMORY.md
 
 ---
-*与 ZCode 的合作中提炼而成。2026-07-08*
+*本项目的核心发现：两个不同模型的 AI 互相审查，远比一个 AI 单干可靠。*
