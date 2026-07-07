@@ -26,7 +26,10 @@ def tree(dir_path, prefix='', max_depth=3, depth=0, pattern=None):
     files = [i for i in visible if not os.path.isdir(os.path.join(dir_path, i))]
     
     display = dirs[:15] + files[:15]
-    d_count, f_count = 0, 0
+    if len(dirs) > 15:
+        print(f'{prefix}... ({len(dirs) - 15} more dirs)')
+    if len(files) > 15:
+        print(f'{prefix}... ({len(files) - 15} more files)')
     
     for i, name in enumerate(display):
         is_last = (i == len(display) - 1)

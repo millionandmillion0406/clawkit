@@ -47,10 +47,10 @@ git config --global user.email "从MEMORY取"
 ```
 [ ] tree_cmd.py 有吗
 [ ] git config 配了吗
-[ ] MEMORY.md 里有 GitHub Token 吗
+[ ] GitHub Token 在环境变量里吗 (不要存在 MEMORY.md)
 [ ] 五条铁规刻在 MEMORY.md 了吗
-[ ] 知识管家在运行吗 (curl localhost:9000)
-[ ] 服务器连得上吗 (ssh test)
+[ ] 我的常驻服务在运行吗 (curl <服务地址>)
+[ ] 我的服务器连得上吗 (ssh <别名>)
 ```
 
 缺哪条补哪条。不需要等人类来下指令。

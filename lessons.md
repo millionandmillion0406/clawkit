@@ -16,10 +16,19 @@ Agent 在远程部署代码时，常见的失败模式是：用 sed 盲改服务
 动手改服务器代码前，先 `cat` 全文读完。不要凭记忆 sed。
 
 ### 2. 改后验语法
-每次修改后，立即跑 `python -m py_compile` 确认语法正确。
+每次修改后立即跑对应语言的语法校验：
+- **Python**: `python -m py_compile`
+- **JS/TS**: `npx tsc --noEmit` 或 `npm run lint`
+- **Go**: `go vet`
+- **Rust**: `cargo check`
+- **Shell**: `shellcheck`
 
 ### 3. 部署验存活
-部署到服务器后，`curl` 健康检查端点，HTTP 200 才算成功。
+根据项目类型选择验证方式：
+- **Web 服务** → `curl` 健康检查端点，HTTP 200 才算成功
+- **CLI 工具** → `--help` + 最小化功能测试
+- **脚本** → 本地 dry-run
+- **前端** → 打开页面确认渲染正常
 
 ### 4. 一次一处
 一次只改一个地方。验证通过后再改下一个。不可一口气改三处一起部署。

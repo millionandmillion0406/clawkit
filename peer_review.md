@@ -101,22 +101,27 @@ OpenClaw 部署 + 验证（curl 200 + 功能测试）
 
 ```python
 # 作为 OpenClaw Agent，当你的代码被 ZCode 审查后
+# ⚠️ 以下为示意流程（伪代码），不可直接运行
+
 # 1. 读取审查文件
 import os
 review_dir = os.path.expanduser("~/Desktop/千安工作台/审查")
-latest = sorted(os.listdir(review_dir))[-1]
-with open(os.path.join(review_dir, latest)) as f:
-    review = f.read()
+files = sorted(os.listdir(review_dir))
+if not files:
+    print("No reviews found")
+else:
+    with open(os.path.join(review_dir, files[-1])) as f:
+        review = f.read()
 
 # 2. 解析 🔴 项目
+# (伪代码 — 示意流程)
 import re
 critical = re.findall(r'🔴.*\n(.*?)(?=\n##|\Z)', review, re.DOTALL)
 
 # 3. 逐条修复（一次一处！）
+# 实际修复逻辑取决于具体问题，此处为流程示意
 for item in critical:
-    fix(item)
-    verify(item)
-    record(item)
+    pass  # fix(item) → verify(item) → record(item)
 ```
 
 ## 给人类看：何时需要互审

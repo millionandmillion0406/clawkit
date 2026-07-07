@@ -18,10 +18,16 @@ fi
 # 2. Configure Git
 if [ -z "$(git config user.name 2>/dev/null)" ]; then
     echo "[2/4] Configure Git..."
-    read -p "  GitHub username: " gh_user
-    read -p "  GitHub email: " gh_email
-    git config --global user.name "$gh_user"
-    git config --global user.email "$gh_email"
+    if [ -n "$GIT_USER" ] && [ -n "$GIT_EMAIL" ]; then
+        # Non-interactive mode (for Agent automation)
+        git config --global user.name "$GIT_USER"
+        git config --global user.email "$GIT_EMAIL"
+    else
+        read -p "  GitHub username: " gh_user
+        read -p "  GitHub email: " gh_email
+        git config --global user.name "$gh_user"
+        git config --global user.email "$gh_email"
+    fi
 else
     echo "[2/4] Git configured: $(git config user.name)"
 fi

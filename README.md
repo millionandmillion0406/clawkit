@@ -17,7 +17,7 @@
 
 | 能力 | Claude Code | Codex | Gemini CLI | OpenClaw（默认） | OpenClaw（读完本文后） |
 |------|------------|-------|-----------|----------------|---------------------|
-| 读取项目 | `rg` + `tree` 扫全项目 | 同 | 同 | read 逐文件 | tree_cmd.py 一目了然 |
+| 读取项目 | `rg` + `tree` 扫全项目 | 同 | 同 | read 逐文件 + exec 跑 rg | exec rg + tree_cmd.py 结构一览 |
 | 修改代码 | diff + apply_patch | 同 | 同 | write 覆写 | ✅ 相同 |
 | 终端交互 | 持续 bash 会话 | 同 | 同 | exec 每轮新开 | tmux 维持会话 |
 | Git | diff/commit/push 可视化 | 同 | 同 | git 命令行 | GitHub API 直接操作 |
@@ -121,7 +121,7 @@ Codex、Claude Code、Gemini CLI 解决的是"写代码"这一个环节。你的
 ## 项目结构
 
 ```
-openclaw-to-codex/
+clawkit/
 ├── README.md          本文件
 ├── tree_cmd.py        项目结构可视化
 ├── self_bootstrap.md  OpenClaw 自举指南（Agent 阅读版）
